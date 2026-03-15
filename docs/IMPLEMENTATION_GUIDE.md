@@ -4,6 +4,27 @@ This guide provides a production-ready blueprint for building a backend that int
 
 ---
 
+## 0. LOCAL DEVELOPMENT SETUP
+
+For local development and testing, you must have a blockchain environment running. 
+
+### Prerequisites
+1.  **Hardhat Node**: In a separate terminal, run:
+    ```bash
+    npx hardhat node
+    ```
+2.  **Local Contract Deployment**: Deploy the T-REX suite to your local node. This typically involves running a deployment script provided with your smart contracts:
+    ```bash
+    cd ERC-3643
+    npx hardhat run scripts/deploy-trex.ts --network localhost
+    ```
+    > [!IMPORTANT]
+    > After deployment, copy the contract addresses printed in the console to your [`.env`](file:///.env) file (`TOKEN_ADDRESS`, `IDENTITY_REGISTRY_ADDRESS`, etc.).
+
+3.  **Environment Sync**: Your [`.env`](file:///.env) must point to `http://127.0.0.1:8545`. 
+
+---
+
 ## 1. SYSTEM ARCHITECTURE
 
 The architecture follows a modular service-oriented approach to decouple API concerns from blockchain transaction management and event indexing.
