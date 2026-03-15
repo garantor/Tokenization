@@ -1,65 +1,76 @@
 import express from 'express';
 
-// Export the unstarted app instance for Supertest
 export const app = express();
 app.use(express.json());
 
-// Flow 1: Onboarding
-app.post('/investors/register', (req, res) => {
-  res.status(201).json({ status: 'success', wallet: req.body.wallet });
-});
+const r = express.Router();
 
-app.post('/claims/issue', (req, res) => {
-  res.status(201).json({ status: 'success' });
-});
+// ─── TDD Red Phase: All routes return 501 Not Implemented ────────────
+// Implement real logic to make tests pass.
 
-// Flow 3: Primary Issuance
-app.post('/tokens/mint', (req, res) => {
-  res.status(200).json({ status: 'success' });
-});
+// 1. Investor Identity (5)
+r.post('/investors/register', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/investors/:wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/investors/link-wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/investors/unlink-wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/investors/revoke', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-// Flow 4: Secondary Transfer
-app.post('/tokens/transfer', (req, res) => {
-  // Simple mocked logic for E2E tests specifically expecting 422 if pre-flight fails
-  if (!req.body.from || !req.body.to) {
-    return res.status(422).json({ error: 'Identity not registered or missing claims' });
-  }
-  
-  // Magic string from workflows.e2e-spec.ts Recipient rejection test
-  if (req.body.to === '0x1A2B3C4d5E6F7a8B9C0D1E2F3A4B5C6d7E8F9a0B') {
-    return res.status(422).json({ error: 'Identity not registered or missing claims' });
-  }
+// 2. Claims (5)
+r.post('/claims/issue', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/claims/revoke', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/claims/:wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/claims/topics', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/claims/topics', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-  // Magic value to simulate frozen error
-  if (req.body.amount === 10) {
-    return res.status(422).json({ error: 'Token is paused or Wallet Frozen' });
-  }
+// 3. Trusted Issuers (3)
+r.post('/issuers/trusted', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.delete('/issuers/trusted/:wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/issuers/trusted', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-  res.status(200).json({ status: 'success', txHash: '0xmockTx' });
-});
+// 4. Token Deployment (2)
+r.post('/tokens/deploy', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/tokens/config', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-// Flow 5: Freeze
-app.post('/compliance/freeze', (req, res) => {
-  res.status(200).json({ status: 'success' });
-});
+// 5. Token Issuance (3)
+r.post('/tokens/mint', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/tokens/batch-mint', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/tokens/burn', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-// Flow 6: Forced Transfer
-app.post('/admin/force-transfer', (req, res) => {
-  res.status(200).json({ status: 'success' });
-});
+// 6. Transfers (3)
+r.post('/tokens/transfer', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/tokens/batch-transfer', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/tokens/simulate-transfer', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-// Flow 10: Agent Management
-app.post('/admin/add-agent', (req, res) => { res.status(200).json({}); });
-app.post('/admin/remove-agent', (req, res) => { res.status(200).json({}); });
+// 7. Compliance (4)
+r.post('/compliance/freeze', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/compliance/unfreeze', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/compliance/freeze-tokens', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/compliance/status/:wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-// Flow 11: Batch Mint
-app.post('/tokens/batch-mint', (req, res) => { res.status(200).json({}); });
+// 8. Admin (3)
+r.post('/admin/force-transfer', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/admin/pause', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/admin/unpause', (req, res) => res.status(501).json({ error: 'Not implemented' }));
 
-// Flow 13: Simulate Transfer
-app.post('/tokens/simulate-transfer', (req, res) => {
-  // If we simulate specifically from InvestorA to InvestorB un-stubbed. 
-  // In a real app this hits viem `publicClient.readContract` on `canTransfer`
-  const isFrozen = false; // Mock DB query Result
-  const canTransfer = req.body.to === '0x1A2B3C4d5E6F7a8B9C0D1E2F3A4B5C6d7E8F9a0B' ? false : !isFrozen;
-  res.status(200).json({ canTransfer });
-});
+// 9. Agents (3)
+r.post('/agents', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.delete('/agents/:wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/agents', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+
+// 10. Portfolio (2)
+r.get('/tokens/balance/:wallet', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/investors/:wallet/portfolio', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+
+// 11. Transactions (2)
+r.get('/transactions/:txHash', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/transactions', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+
+// 12. Events (2)
+r.get('/events/status', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.post('/events/resync', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+
+// 13. Health (2)
+r.get('/health', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+r.get('/health/blockchain', (req, res) => res.status(501).json({ error: 'Not implemented' }));
+
+app.use('/api/v1', r);
