@@ -6,22 +6,21 @@ This guide provides a production-ready blueprint for building a backend that int
 
 ## 0. LOCAL DEVELOPMENT SETUP
 
-For local development and testing, you must have a blockchain environment running. 
+For local development and testing, you can set up the entire blockchain environment with a single command:
 
-### Prerequisites
-1.  **Hardhat Node**: In a separate terminal, run:
+1.  **Unified Setup**: Run the following from the project root:
     ```bash
-    npx hardhat node
+    npm run blockchain:setup
     ```
-2.  **Local Contract Deployment**: Deploy the T-REX suite to your local node. This typically involves running a deployment script provided with your smart contracts:
-    ```bash
-    cd ERC-3643
-    npx hardhat run scripts/deploy-trex.ts --network localhost
-    ```
-    > [!IMPORTANT]
-    > After deployment, copy the contract addresses printed in the console to your [`.env`](file:///.env) file (`TOKEN_ADDRESS`, `IDENTITY_REGISTRY_ADDRESS`, etc.).
+    This command will:
+    - Start a local Hardhat node.
+    - Wait for the node to be ready.
+    - Deploy the T-REX smart contract suite.
+    - **Automatically update your [`.env`](file:///.env)** with the latest contract addresses.
 
-3.  **Environment Sync**: Your [`.env`](file:///.env) must point to `http://127.0.0.1:8545`. 
+2.  **Keep it running**: Leave this terminal open. If you need to restart the environment (e.g., to reset the state), simply `Ctrl+C` and run the command again.
+
+---
 
 ---
 

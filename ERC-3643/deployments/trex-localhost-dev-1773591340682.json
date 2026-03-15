@@ -1,0 +1,48 @@
+{
+  "profile": "dev",
+  "network": "localhost",
+  "deployer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "config": {
+    "owner": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "tokenName": "TREXDINO",
+    "tokenSymbol": "TREX",
+    "tokenDecimals": 0,
+    "tokenSalt": "dev-localhost-1773591340365",
+    "irs": "0x0000000000000000000000000000000000000000",
+    "onchainId": "0x0000000000000000000000000000000000000000",
+    "irAgents": [],
+    "tokenAgents": [],
+    "complianceModules": [],
+    "complianceSettings": [],
+    "claimTopic": "0x2e8e9dbac879b1e3204f60b5b07c03c463be5f75a01ec30831bc754da79e4bf5",
+    "issuerClaims": [
+      "0x2e8e9dbac879b1e3204f60b5b07c03c463be5f75a01ec30831bc754da79e4bf5"
+    ],
+    "claimIssuerAddress": "0xc3e53F4d16Ae77Db1c982e75a937B9f60FE63690",
+    "claimIssuerOwner": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "claimSigner": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "confirmations": 1
+  },
+  "addresses": {
+    "claimTopicsRegistryImplementation": "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
+    "trustedIssuersRegistryImplementation": "0x68B1D87F95878fE05B998F19b66F4baba5De1aed",
+    "identityRegistryStorageImplementation": "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c",
+    "identityRegistryImplementation": "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d",
+    "modularComplianceImplementation": "0x59b670e9fA9D0A427751Af201D676719a970857b",
+    "tokenImplementation": "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
+    "onchainIdIdentityImplementation": "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44",
+    "onchainIdImplementationAuthority": "0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f",
+    "onchainIdFactory": "0x4A679253410272dd5232B3Ff7cF5dbB88f295319",
+    "trexImplementationAuthority": "0x7a2088a1bFc9d81c55368AE168C2C02570cB814F",
+    "trexFactory": "0xc5a5C42992dECbae36851359345FE25997F5C42d",
+    "suite": {
+      "token": "0x0BD3010c3e786D5deC3c1ec0e29fae114Fa7D97D",
+      "ir": "0xFDc488d6cb9Bd81Aa5933Fa4C8F567499f85Dc89",
+      "irs": "0xef89eFA8a09De32a2Ee6032b7E9a9f9967BECB36",
+      "tir": "0x58666034Bb9B8750E9A71B9B13bd46fB9eb39861",
+      "ctr": "0x7618F24A8e472A04fD2010FCCb3880A09999f564",
+      "mc": "0xbdb2dd750E415156eEDd3aBD6638C29eAa45828d"
+    }
+  },
+  "deploymentTxHash": "0x5d4deab1fa9c57198931435cac55b5cd0bd079bb70fa4d7ffe0680d791c0eb03"
+}
