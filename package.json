@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "ts-node src/server.ts",
-    "test": "jest --config ./jest.config.json",
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "test:unit": "jest --config ./jest.config.json tests/unit",
     "test:integration": "jest --config ./jest.config.json tests/integration",
     "test:e2e": "jest --config ./jest.e2e.json tests/e2e"
