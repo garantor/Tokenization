@@ -2,7 +2,7 @@ import { testClient, publicClient, getWalletClient, setupTrexFixture } from './f
 import * as api from './helpers/api';
 import { getDbClient } from './helpers/db';
 // Assuming ABIs are imported from a central location
-import { TokenABI, IdentityRegistryABI } from './abis/mockAbi'; // Placeholder for actual ABIs
+import { TokenABI, IdentityRegistryABI, TREXFactoryABI } from './abis/mockAbi'; // Placeholder for actual ABIs
 
 describe('ERC-3643 Token Lifecycle E2E Workflows (Viem)', () => {
   let signers: any;
@@ -20,14 +20,14 @@ describe('ERC-3643 Token Lifecycle E2E Workflows (Viem)', () => {
 
   beforeAll(async () => {
     // Note: Provide actual factory ABI and bytecode to setupTrexFixture
-    const fixture = await setupTrexFixture([], "0x");
+    const fixture = await setupTrexFixture(TREXFactoryABI, "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220a27cb46c0d8d77d71b");
     signers = fixture.signers;
     suite = fixture.suiteAddresses;
     db = getDbClient();
   });
 
   afterAll(async () => {
-    await db.disconnect();
+    await db?.disconnect?.();
   });
 
   describe('FLOW 1 — INVESTOR ONBOARDING', () => {

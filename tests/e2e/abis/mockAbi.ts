@@ -1,6 +1,15 @@
-// Placeholder ABIs for Viem strictly for compiling the boilerplate templates
-
 export const TREXFactoryABI = [{
+  "inputs": [
+    {"internalType": "address","name": "tokenImplementation","type": "address"},
+    {"internalType": "address","name": "ctrImplementation","type": "address"},
+    {"internalType": "address","name": "irsImplementation","type": "address"},
+    {"internalType": "address","name": "irImplementation","type": "address"},
+    {"internalType": "address","name": "tirImplementation","type": "address"},
+    {"internalType": "address","name": "complianceImplementation","type": "address"}
+  ],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+}, {
   "inputs": [],
   "name": "TREXSuiteDeployed",
   "type": "event"

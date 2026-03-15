@@ -1,6 +1,6 @@
 import { testClient, publicClient, getWalletClient, setupTrexFixture } from './fixtures';
 import { getDbClient } from './helpers/db';
-import { TokenABI } from './abis/mockAbi'; // Placeholder for actual ABIs
+import { TokenABI, TREXFactoryABI } from './abis/mockAbi'; // Placeholder for actual ABIs
 
 describe('FLOW 9 — EVENT RECONCILIATION', () => {
   let signers: any;
@@ -9,14 +9,14 @@ describe('FLOW 9 — EVENT RECONCILIATION', () => {
 
   beforeAll(async () => {
     // Note: Provide actual factory ABI and bytecode to setupTrexFixture
-    const fixture = await setupTrexFixture([], "0x");
+    const fixture = await setupTrexFixture(TREXFactoryABI, "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220a27cb46c0d8d77d71b");
     signers = fixture.signers;
     suite = fixture.suiteAddresses;
     db = getDbClient();
   });
 
   afterAll(async () => {
-    await db.disconnect();
+    await db?.disconnect?.();
   });
 
   it('Should reliably ingest events and maintain idempotency against DB', async () => {
