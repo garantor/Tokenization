@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-export const auth = (role?: 'issuer' | 'investor' | 'compliance' | 'agent') => (req: Request, res: Response, next: NextFunction) => {
+export const auth = (role?: 'issuer' | 'investor' | 'compliance' | 'agent' | 'regulator') => (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
     return res.status(401).json({ error: 'unauthorized' });
@@ -10,6 +10,7 @@ export const auth = (role?: 'issuer' | 'investor' | 'compliance' | 'agent') => (
   const issuerTokens = ['jwt-issuer', 'jwt-trusted-issuer'];
   const complianceTokens = ['jwt-compliance'];
   const agentTokens = ['jwt-agent'];
+  const regulatorTokens = ['jwt-regulator'];
 
   if (role === 'issuer' && !issuerTokens.includes(token)) {
     return res.status(403).json({ error: 'forbidden: issuer only' });
@@ -21,6 +22,10 @@ export const auth = (role?: 'issuer' | 'investor' | 'compliance' | 'agent') => (
 
   if (role === 'agent' && !agentTokens.includes(token)) {
     return res.status(403).json({ error: 'forbidden: agent only' });
+  }
+
+  if (role === 'regulator' && !regulatorTokens.includes(token)) {
+    return res.status(403).json({ error: 'forbidden: regulator only' });
   }
 
   if (role === 'investor' && !token.startsWith('jwt-investor')) {

@@ -4,6 +4,7 @@ import { investorRouter } from './modules/investors/investors.routes';
 import { claimsRouter } from './modules/claims/claims.routes';
 import { tokensRouter } from './modules/tokens/tokens.routes';
 import { complianceRouter } from './modules/compliance/compliance.routes';
+import { issuersRouter } from './modules/issuers/issuers.routes';
 
 export const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use('/api/v1', investorRouter);
 app.use('/api/v1', claimsRouter);
 app.use('/api/v1', tokensRouter);
 app.use('/api/v1', complianceRouter);
+app.use('/api/v1', issuersRouter);
 
 // Add more modules here:
 // app.use('/api/v1', claimsRouter);
