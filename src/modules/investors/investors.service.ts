@@ -40,6 +40,10 @@ export class InvestorsService {
     return investor;
   }
 
+  async exists(wallet: string): Promise<boolean> {
+    return investors.has(wallet);
+  }
+
   async linkWallet(identityWallet: string, newWallet: string) {
     // Logic for linking
     return { status: 'linked', identityWallet, newWallet };
