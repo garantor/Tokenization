@@ -5,6 +5,11 @@ import { claimsRouter } from './modules/claims/claims.routes';
 import { tokensRouter } from './modules/tokens/tokens.routes';
 import { complianceRouter } from './modules/compliance/compliance.routes';
 import { issuersRouter } from './modules/issuers/issuers.routes';
+import { agentsRouter } from './modules/agents/agents.routes';
+import { adminRouter } from './modules/admin/admin.routes';
+import { healthRouter } from './modules/health/health.routes';
+import { eventsRouter } from './modules/events/events.routes';
+import { transactionsRouter } from './modules/transactions/transactions.routes';
 
 export const app = express();
 app.use(express.json());
@@ -17,6 +22,11 @@ app.use('/api/v1', claimsRouter);
 app.use('/api/v1', tokensRouter);
 app.use('/api/v1', complianceRouter);
 app.use('/api/v1', issuersRouter);
+app.use('/api/v1', agentsRouter);
+app.use('/api/v1', adminRouter);
+app.use('/api/v1', healthRouter);
+app.use('/api/v1', eventsRouter);
+app.use('/api/v1', transactionsRouter);
 
 // Add more modules here:
 // app.use('/api/v1', claimsRouter);
